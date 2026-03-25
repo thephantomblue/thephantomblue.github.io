@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Phantom Blue</title>
+    <link rel="icon" type="image/png" href="raven.png">
+    <style>
+        body { display: flex; flex-direction: column; align-items: center; margin: 0; }
+        .gallery { display: flex; gap: 20px; margin-top: 30px; }
+
+        
+        
+        img { 
+            width: 250px; 
+            height: auto; 
+            border: 3px solid #444; 
+            transition: transform 0.3s ease;
+            box-shadow: 0 0 15px rgba(26, 26, 26, 0.5);
+        }
+
+        .reversed {
+            transform: rotate(180deg);
+            border: 3px solid #ff4444;
+            box-shadow: 0 0 15px rgba(255, 68, 68, 0.5);
+        }
+
+        #about-text {
+            margin-top: 40px;
+            text-align: center;
+            display: none; 
+            max-width: 600px;
+        }
+
+        #about-text p { margin: 5px 0; min-height: 1em; }
+
+                    /* The Archive Scroll Styles */
+
+                    .red-word { color: #ff4444; }
+.blue-word { color: #55aaff; }
+
+            #archive-scroll {
+                display: none;
+                width: 100vw; 
+                margin-top: 20px;
+                border: none;
+                padding: 20px 0;
+            }
+
+            #archive-scroll p {
+                display: block;
+                margin: 8px 0;
+                padding: 10px 0;
+                font-size: 28px;
+                line-height: 1.2;
+                white-space: nowrap;
+                
+                /* Individual scroll logic */
+                overflow-x: auto;
+                cursor: ew-resize;
+                
+                /* Hide scrollbars for every line */
+                -ms-overflow-style: none;  
+                scrollbar-width: none;  
+            }
+
+            #archive-scroll p::-webkit-scrollbar { 
+                display: none; 
+            }
+
+            #archive-scroll p:active { 
+                cursor: grabbing; 
+            }
+
+        a { cursor: pointer; color: blue; text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+
+
+    <h2>The Phantom Blue</h2>
+    <button onclick="displayRandomImages()">New Reading</button>
+    <div class="gallery" id="gallery"></div>
+
+    <div id="about-text">
+        <p>samuel dvorin, hugo berthier, josie arthur</p>
+        <p>paris, fr</p>
+        <p></p>
+        <p>we, from the shadows -- the phantom blue is an incantation -- a trio of guided by the hand of</p>
+        <p></p>
+        <p>we breathe -- hypnotic rites of minimalism -- built upon skeletal, long-form architectures that breathe and bleed into the room.</p>
+        <p>this dark sprawl -- evolves through a primal sense and</p>
+        <p></p>
+        <p>a haunting stillness, born from a wordless collective intuition.</p>
+        <p></p>
+        <p>we are the deep electric well -- the traces of ancient repetition -- the trio weaves a tapestry -- dense and ghostly.</p>
+        <p></p>
+        <p>we, outward find -- a world where a single, whispered musical gesture can -- gradually mutating until it -- consumes -- the air as a landscape—</p>
+        <p>a monument of sound and shadow.</p>
+    </div>
+
+    <div id="archive-scroll">
+        </div>
+
+    <script>
+        const totalPages = 22;
+        const linkLabels = ["about", "listen", "archive"];
+        const lyrics = "When I awoke I was all alone You think it's all of all you've known Tell me the reasons Show me the signs Too many things are on my mind I find its all a lie Still I'm fine and I'm alone So i try to get it right Happens again and Most of the time Too many things are in a line I see you looking You're turning away Tell me you love me and you'll stay I find its all a lie Still I'm fine and I'm alone So i try to get it right She stays up late at night She watches me At least she tries To show me what is right I follow her With all my might Dont want to be alone So follow me As I walk home It happens everytime I stay with you I see the light Then I saw the light I wait for her I wait each night Til it burns my eyes I'll look at you Until I die I can't live up to what I wanted to I can't live up to what I wanted to I can't live up to what I wanted to I can't live up to what I wanted to Try not to think as I walk home It's hard to sing when you're alone At the end of the day it just wasn't right Praise the lord I saw the light It's hard to think with this mind of my own And it's hard to sleep when I'm alone When I close my eyes its black as the night Praise the lord I saw the light How will I feel when I find a home Its hard to find one all on my own I asked and I asked and with all of my might Praise the lord I saw the light Tell me what I paid for When you come home lighter I wish I was a pusher Can you see it in me WHen you home later You could be a sailor I wanna listen to you I wanna be a runner Tell her she's my savoir I like to make you listen I always push it further So can you say you need me Talk on the phone When im not home Its not that bad I called my dad When I want you now I wont lie Or lash out When I figure out What its about I came around Its less hard now To fall on my sword And be less bored When I want you now I wont lie Or lash out When I figure out What its about Yeah i know But come and show me I know But when you hold me I know That's it's all right I know But come and show me Afraid to take it as it is I watch you bathe in it Hold me close Im yours now Offer it to me push me around I tried silence tried drowning it out Run out of options, just figure it out I like it when you complicate it for me I like it when its too hard to see Call me in the moring Its what i you to Do when you're thinking of me And ill try it to III call you when Im lonely Its all that i can do Tell me you're thinking of me While I think of you too As I find you Hold me to the ground how I saw you i never knew how Thought I knew you I wasn't around When I try to I turn it around When I want you There's no one around When I see you You float above ground All the times where I try to speak out And When I try to I turn it around It's like she knew it sometimes Could she see through it, my hands and my eyes And I would wait at a table on the second floor I'll sit behind you As I walked to the door she looks back at me But i lied to you and you lied to me I found you in pictures and i watched you in films Give me what i saw, show me how it feels Its up to you Still i told you, i told you the truth Its always this house its always me and you So dont make me sick I drove her away, by begging her to stay I drove her away, by taking all the blame Then i got lost and i got weak So hold me longer please hold me to sleep I was a child and thought it was the same So show me youre different and im to blame And i left you crying Id like it if you'd wait up for me Tell me bout all the things i cannot see Or i cant remember I drove her away, by begging her to stay I drove her away, by taking all the blame I drove her away, by begging her to stay I drove her away, by taking all the blame Told her what I wanted She came up from above so many times I tried to tell her You're the one I loved It just makes me so nervous When I think of her with me Tell me all the things That you want no one else to see Ill say your name When i look up to you I know thats its you i see Who else could it be there Smiling back at me Waking from a dream to find I left you next to me Then I saw you waiting Waiting for me in the street I gotta know what she's thinking about I dream about her every night pushing me around But I cant hear what youre saying and its pouring rain And I wake up feeling lonely and it's always the same I spend my day waiting tryna get to the night It's all the time I’ve wasted i wasted a life Follow the angel I see in the light Cause I’m waiting for the way you looked that night Back to my room rushing to make it right Cause she was always worried about some other life She told me that I’m special I told her thats nice Cause when you're just a kid you want everything in sight I was the kind To speak his mind Without knowing what he meant or what's inside You are the line Circled round what's mine And I like to write you songs to leave behind Now I can see What it really means To make something That matters to me Like to write a song for you to see And since you know me it means everything Yeah to write a song for you to see Since you know me it means everything I wanna tell u something different when I tell you the truth, I Wanna look u in the eyes and say what I am I wanna hold you right now But I don’t know Its so hard So I put my right foot forward And I say it again I wanna tell you what I think about Its what i am But i dont even know And i just can try to Move on You say always is something But always is nothing And nothing I wanna tell u something different when I tell you the truth, I Wanna look u in the eyes and say what I am I wanna hold you right now But I don’t know Its so hard So I put my right foot forward And I say it again I wanna tell you what I think it means To be a man But i dont even know And i just can try to Move on You say always is something But always is nothing And nothing When im cold And i find you sleeping You tell me which one i am When im warm In bed, next to you thinking You show me the way i am I, I try When you show me the road Come and tell me it’s sold But I, I find That it comes and it goes But i want u to know But tell me every time it feels right Whens its right thats mine But I, I try When you show me the road Its all come and sold But I, I find That it comes and it goes But i want u to know But tell me every time it looks smart Whens its right thats mine One last week in town I’m leaving now One last ride around I’m thinking how I wanted out Of This stupid town I’m leaving now Tell me im the one Call me just for fun Tell me im your man And i dont understand You wanted out Of This stupid town Youre leaving now When I want you I’m all around So tell me when I hit the ground Come and see me I’m around You can talk and Tell me how I don't know you I can find you Just not right now Its not that simple Im not that proud Come and see me I’m around You can talk and Tell me how I don't know you i hope you’ll ask it of me i’ll help you find it in me when i can’t see it you’re right there i wanted i wanted i wanted to know it’s there oh it’s a damn shame would you say my name i’m going out of town with no one to blame i hope you’re thinking of me To help you take it from me when i can’t see it you’re right there i wanted i wanted i wanted to know it’s there oh it’s a damn shame would you say my name i’m going out of town with no one to blame oh such a damn shame would you say my name i’m going out of town with no one to blame It is different My face is in my mind Surround me from time to time It is different When I close my eyes Surround me and I will try And I slow down and I put it in drive When i find out that Its not right But you wanted it the last time But im yours and youre mine All you do is Is wait to call me I'll treat you better But you don't know me All you do is Is wait to call me I'll treat you better But you don't know me";
+
+        function generateArchiveLines() {
+            const archive = document.getElementById('archive-scroll');
+            archive.innerHTML = ''; 
+            
+            const words = lyrics.split(' ');
+            const totalLines = 5;
+            
+            for (let i = 0; i < totalLines; i++) {
+                const p = document.createElement('p');
+                
+                // Calculate a different starting point for each line to stagger them
+                const startPoint = Math.floor(words.length * (i / totalLines));
+                const rearranged = words.slice(startPoint).concat(words.slice(0, startPoint));
+                
+                // Map through words to randomly assign colors with a 10% total chance
+                const formattedWords = rearranged.map(word => {
+                    const chance = Math.random();
+                    if (chance < 0.05) { 
+                        return `<span class="red-word">${word}</span>`;
+                    } else if (chance < 0.10) { 
+                        return `<span class="blue-word">${word}</span>`;
+                    }
+                    return word;
+                });
+
+                p.innerHTML = formattedWords.join(' ');
+                archive.appendChild(p);
+            }
+        }
+
+        function toggleAbout(e) {
+            e.preventDefault();
+            document.getElementById('archive-scroll').style.display = "none";
+            const textDiv = document.getElementById('about-text');
+            textDiv.style.display = (textDiv.style.display === "block") ? "none" : "block";
+        }
+
+        function toggleArchive(e) {
+            e.preventDefault();
+            document.getElementById('about-text').style.display = "none";
+            const scrollDiv = document.getElementById('archive-scroll');
+            
+            if (scrollDiv.style.display === "block") {
+                scrollDiv.style.display = "none";
+            } else {
+                generateArchiveLines(); 
+                scrollDiv.style.display = "block";
+                
+                // Trigger a staggered peek animation for each individual line
+                const lines = scrollDiv.querySelectorAll('p');
+                lines.forEach((line, i) => {
+                    setTimeout(() => {
+                        // Each line scrolls a slightly different amount for a ghostly effect
+                        line.scrollTo({ left: 100 + (i * 15), behavior: 'smooth' });
+                        setTimeout(() => {
+                            line.scrollTo({ left: 0, behavior: 'smooth' });
+                        }, 600);
+                    }, i * 80); // 80ms delay between each line starting its move
+                });
+            }
+        }
+
+        function displayRandomImages() {
+    const container = document.getElementById('gallery');
+    container.innerHTML = ''; 
+    
+    let selected = [];
+    while(selected.length < 3) {
+        let randomNum = Math.floor(Math.random() * totalPages);
+        if (!selected.includes(randomNum)) {
+            selected.push(randomNum);
+        }
+    }
+
+    selected.forEach((num, index) => {
+        const wrapper = document.createElement('div');
+        wrapper.style.display = 'flex';
+        wrapper.style.flexDirection = 'column';
+        wrapper.style.alignItems = 'center';
+        wrapper.style.gap = '10px';
+
+        const img = document.createElement('img');
+        img.src = `page-${num}.png`; 
+        img.alt = `Page ${num}`;
+
+        if (Math.random() < 0.5) {
+            img.classList.add('reversed');
+        }
+
+        const link = document.createElement('a');
+        link.textContent = linkLabels[index];
+        
+        if (linkLabels[index] === "about") {
+            link.onclick = toggleAbout;
+        } else if (linkLabels[index] === "archive") {
+            link.onclick = toggleArchive;
+        } else if (linkLabels[index] === "listen") {
+            // Correct way to link to an external site
+            link.href = "https://www.ninaprotocol.com/hubs/thephantomblue";
+            link.target = "_blank"; 
+        } else {
+            link.href = "#"; 
+        }
+
+        wrapper.appendChild(img);
+        wrapper.appendChild(link);
+        container.appendChild(wrapper);
+    });
+}
+
+        window.onload = displayRandomImages;
+    </script>
+</body>
+</html>
