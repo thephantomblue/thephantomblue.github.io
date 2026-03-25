@@ -6,78 +6,86 @@
     <title>The Phantom Blue</title>
     <link rel="icon" type="image/png" href="raven.png">
     <style>
-        body { display: flex; flex-direction: column; align-items: center; margin: 0; }
-        .gallery { display: flex; gap: 20px; margin-top: 30px; }
-
-        
-        
-        img { 
-            width: 250px; 
-            height: auto; 
-            border: 3px solid #444; 
-            transition: transform 0.3s ease;
-            box-shadow: 0 0 15px rgba(26, 26, 26, 0.5);
+        body { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            margin: 0; 
+            padding: 10px; 
+            box-sizing: border-box;
+            overflow-x: hidden;
         }
-
+    
+        /* Force a 3-column grid on all screens */
+        .gallery { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 10px; 
+            margin-top: 30px; 
+            width: 100%;
+            max-width: 900px; /* Limits size on desktop so images aren't huge */
+        }
+    
+        /* Ensure the wrapper centers the image and link */
+        .gallery > div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+    
+        /* Images scale to fit the 3-column slot */
+        img { 
+            width: 100%;
+            height: auto; 
+            border: 2px solid #444; 
+            transition: transform 0.3s ease;
+            box-shadow: 0 0 10px rgba(26, 26, 26, 0.5);
+        }
+    
         .reversed {
             transform: rotate(180deg);
-            border: 3px solid #ff4444;
-            box-shadow: 0 0 15px rgba(255, 68, 68, 0.5);
+            border: 2px solid #ff4444;
+            box-shadow: 0 0 10px rgba(255, 68, 68, 0.5);
         }
-
+    
+        /* Scale down the links for mobile so they fit the tight columns */
+        a { 
+            cursor: pointer; 
+            color: blue; 
+            text-decoration: underline; 
+            font-size: 14px; 
+            margin-top: 5px;
+            text-align: center;
+        }
+    
         #about-text {
             margin-top: 40px;
             text-align: center;
             display: none; 
             max-width: 600px;
         }
+    
+        #archive-scroll {
+            display: none;
+            width: 100%; 
+            margin-top: 20px;
+        }
+    
+        #archive-scroll p {
+            display: block;
+            margin: 5px 0;
+            font-size: 18px;
+            white-space: nowrap;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
 
-        #about-text p { margin: 5px 0; min-height: 1em; }
-
-                    /* The Archive Scroll Styles */
-
-                    .red-word { color: #ff4444; }
-.blue-word { color: #55aaff; }
-
-            #archive-scroll {
-                display: none;
-                width: 100vw; 
-                margin-top: 20px;
-                border: none;
-                padding: 20px 0;
-            }
-
-            #archive-scroll p {
-                display: block;
-                margin: 8px 0;
-                padding: 10px 0;
-                font-size: 28px;
-                line-height: 1.2;
-                white-space: nowrap;
-                
-                /* Individual scroll logic */
-                overflow-x: auto;
-                cursor: ew-resize;
-                
-                /* Hide scrollbars for every line */
-                -ms-overflow-style: none;  
-                scrollbar-width: none;  
-            }
-
-            #archive-scroll p::-webkit-scrollbar { 
-                display: none; 
-            }
-
-            #archive-scroll p:active { 
-                cursor: grabbing; 
-            }
-
-        a { cursor: pointer; color: blue; text-decoration: underline; }
+        .red-word { color: #ff4444; }
+        .blue-word { color: #55aaff; }
     </style>
 </head>
 <body>
-
-
 
     <h2>The Phantom Blue</h2>
     <button onclick="displayRandomImages()">New Reading</button>
@@ -100,8 +108,7 @@
         <p>a monument of sound and shadow.</p>
     </div>
 
-    <div id="archive-scroll">
-        </div>
+    <div id="archive-scroll"></div>
 
     <script>
         const totalPages = 22;
@@ -117,12 +124,9 @@
             
             for (let i = 0; i < totalLines; i++) {
                 const p = document.createElement('p');
-                
-                // Calculate a different starting point for each line to stagger them
                 const startPoint = Math.floor(words.length * (i / totalLines));
                 const rearranged = words.slice(startPoint).concat(words.slice(0, startPoint));
                 
-                // Map through words to randomly assign colors with a 10% total chance
                 const formattedWords = rearranged.map(word => {
                     const chance = Math.random();
                     if (chance < 0.05) { 
@@ -155,68 +159,63 @@
             } else {
                 generateArchiveLines(); 
                 scrollDiv.style.display = "block";
-                
-                // Trigger a staggered peek animation for each individual line
                 const lines = scrollDiv.querySelectorAll('p');
                 lines.forEach((line, i) => {
                     setTimeout(() => {
-                        // Each line scrolls a slightly different amount for a ghostly effect
                         line.scrollTo({ left: 100 + (i * 15), behavior: 'smooth' });
                         setTimeout(() => {
                             line.scrollTo({ left: 0, behavior: 'smooth' });
                         }, 600);
-                    }, i * 80); // 80ms delay between each line starting its move
+                    }, i * 80);
                 });
             }
         }
 
         function displayRandomImages() {
-    const container = document.getElementById('gallery');
-    container.innerHTML = ''; 
-    
-    let selected = [];
-    while(selected.length < 3) {
-        let randomNum = Math.floor(Math.random() * totalPages);
-        if (!selected.includes(randomNum)) {
-            selected.push(randomNum);
+            const container = document.getElementById('gallery');
+            container.innerHTML = ''; 
+            
+            let selected = [];
+            while(selected.length < 3) {
+                let randomNum = Math.floor(Math.random() * totalPages);
+                if (!selected.includes(randomNum)) {
+                    selected.push(randomNum);
+                }
+            }
+
+            selected.forEach((num, index) => {
+                const wrapper = document.createElement('div');
+                wrapper.style.display = 'flex';
+                wrapper.style.flexDirection = 'column';
+                wrapper.style.alignItems = 'center';
+                wrapper.style.gap = '10px';
+                wrapper.style.width = '100%'; /* Critical for centering on mobile */
+
+                const img = document.createElement('img');
+                img.src = `page-${num}.png`; 
+                img.alt = `Page ${num}`;
+
+                if (Math.random() < 0.5) {
+                    img.classList.add('reversed');
+                }
+
+                const link = document.createElement('a');
+                link.textContent = linkLabels[index];
+                
+                if (linkLabels[index] === "about") {
+                    link.onclick = toggleAbout;
+                } else if (linkLabels[index] === "archive") {
+                    link.onclick = toggleArchive;
+                } else if (linkLabels[index] === "listen") {
+                    link.href = "https://www.ninaprotocol.com/hubs/thephantomblue";
+                    link.target = "_blank"; 
+                }
+
+                wrapper.appendChild(img);
+                wrapper.appendChild(link);
+                container.appendChild(wrapper);
+            });
         }
-    }
-
-    selected.forEach((num, index) => {
-        const wrapper = document.createElement('div');
-        wrapper.style.display = 'flex';
-        wrapper.style.flexDirection = 'column';
-        wrapper.style.alignItems = 'center';
-        wrapper.style.gap = '10px';
-
-        const img = document.createElement('img');
-        img.src = `page-${num}.png`; 
-        img.alt = `Page ${num}`;
-
-        if (Math.random() < 0.5) {
-            img.classList.add('reversed');
-        }
-
-        const link = document.createElement('a');
-        link.textContent = linkLabels[index];
-        
-        if (linkLabels[index] === "about") {
-            link.onclick = toggleAbout;
-        } else if (linkLabels[index] === "archive") {
-            link.onclick = toggleArchive;
-        } else if (linkLabels[index] === "listen") {
-            // Correct way to link to an external site
-            link.href = "https://www.ninaprotocol.com/hubs/thephantomblue";
-            link.target = "_blank"; 
-        } else {
-            link.href = "#"; 
-        }
-
-        wrapper.appendChild(img);
-        wrapper.appendChild(link);
-        container.appendChild(wrapper);
-    });
-}
 
         window.onload = displayRandomImages;
     </script>
