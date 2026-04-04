@@ -15,41 +15,42 @@
             box-sizing: border-box;
             overflow-x: hidden;
         }
-    
-        /* Force a 3-column grid on all screens */
+        
         .gallery { 
             display: grid; 
             grid-template-columns: repeat(3, 1fr); 
             gap: 10px; 
-            margin-top: 30px; 
+            margin-top: 10px; 
             width: 100%;
-            max-width: 900px; /* Limits size on desktop so images aren't huge */
+            max-width: 900px; 
         }
     
-        /* Ensure the wrapper centers the image and link */
         .gallery > div {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-        }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    justify-content: flex-start; 
+}
     
-        /* Images scale to fit the 3-column slot */
-        img { 
-            width: 100%;
-            height: auto; 
-            border: 2px solid #444; 
-            transition: transform 0.3s ease;
+        .gallery img { 
+    height: 30vh;        
+    width: auto;         
+    max-width: 100%;     
+    object-fit: contain; 
+    transition: transform 0.3s ease;
+}
+    
+        .normal {
+            border: 2px solid #444;  
             box-shadow: 0 0 10px rgba(26, 26, 26, 0.5);
         }
-    
         .reversed {
             transform: rotate(180deg);
             border: 2px solid #ff4444;
             box-shadow: 0 0 10px rgba(255, 68, 68, 0.5);
         }
     
-        /* Scale down the links for mobile so they fit the tight columns */
         a { 
             cursor: pointer; 
             color: blue; 
@@ -57,6 +58,11 @@
             font-size: 14px; 
             margin-top: 5px;
             text-align: center;
+        }
+
+        button {
+            margin-top: 20px;
+            margin-bottom: 30px;
         }
     
         #about-text {
@@ -83,27 +89,33 @@
 
         .red-word { color: #ff4444; }
         .blue-word { color: #55aaff; }
+
+        .top-banner {
+            
+            height: 30vh; 
+            margin-bottom: 3vh;
+        }
     </style>
 </head>
 <body>
 
     <h2>The Phantom Blue</h2>
-    <button onclick="displayRandomImages()">New Reading</button>
+
+    <img src="1.jpeg" class="top-banner">
+  <button onclick="displayRandomImages()">⟳⟳⟳New Reading⟳⟳⟳</button>
+
     <div class="gallery" id="gallery"></div>
+
+    
 
     <div id="about-text">
         <p>samuel dvorin, hugo berthier, josie arthur</p>
         <p>paris, fr</p>
-        <p></p>
         <p>we, from the shadows -- the phantom blue is an incantation -- a trio of guided by the hand of</p>
-        <p></p>
         <p>we breathe -- hypnotic rites of minimalism -- built upon skeletal, long-form architectures that breathe and bleed into the room.</p>
         <p>this dark sprawl -- evolves through a primal sense and</p>
-        <p></p>
         <p>a haunting stillness, born from a wordless collective intuition.</p>
-        <p></p>
         <p>we are the deep electric well -- the traces of ancient repetition -- the trio weaves a tapestry -- dense and ghostly.</p>
-        <p></p>
         <p>we, outward find -- a world where a single, whispered musical gesture can -- gradually mutating until it -- consumes -- the air as a landscape—</p>
         <p>a monument of sound and shadow.</p>
     </div>
@@ -118,25 +130,18 @@
         function generateArchiveLines() {
             const archive = document.getElementById('archive-scroll');
             archive.innerHTML = ''; 
-            
             const words = lyrics.split(' ');
             const totalLines = 5;
-            
             for (let i = 0; i < totalLines; i++) {
                 const p = document.createElement('p');
                 const startPoint = Math.floor(words.length * (i / totalLines));
                 const rearranged = words.slice(startPoint).concat(words.slice(0, startPoint));
-                
                 const formattedWords = rearranged.map(word => {
                     const chance = Math.random();
-                    if (chance < 0.05) { 
-                        return `<span class="red-word">${word}</span>`;
-                    } else if (chance < 0.10) { 
-                        return `<span class="blue-word">${word}</span>`;
-                    }
+                    if (chance < 0.05) return `<span class="red-word">${word}</span>`;
+                    else if (chance < 0.10) return `<span class="blue-word">${word}</span>`;
                     return word;
                 });
-
                 p.innerHTML = formattedWords.join(' ');
                 archive.appendChild(p);
             }
@@ -153,7 +158,6 @@
             e.preventDefault();
             document.getElementById('about-text').style.display = "none";
             const scrollDiv = document.getElementById('archive-scroll');
-            
             if (scrollDiv.style.display === "block") {
                 scrollDiv.style.display = "none";
             } else {
@@ -174,39 +178,23 @@
         function displayRandomImages() {
             const container = document.getElementById('gallery');
             container.innerHTML = ''; 
-            
             let selected = [];
             while(selected.length < 3) {
                 let randomNum = Math.floor(Math.random() * totalPages);
-                if (!selected.includes(randomNum)) {
-                    selected.push(randomNum);
-                }
+                if (!selected.includes(randomNum)) selected.push(randomNum);
             }
 
             selected.forEach((num, index) => {
                 const wrapper = document.createElement('div');
-                wrapper.style.display = 'flex';
-                wrapper.style.flexDirection = 'column';
-                wrapper.style.alignItems = 'center';
-                wrapper.style.gap = '10px';
-                wrapper.style.width = '100%'; /* Critical for centering on mobile */
-
                 const img = document.createElement('img');
                 img.src = `page-${num}.png`; 
-                img.alt = `Page ${num}`;
-
-                if (Math.random() < 0.5) {
-                    img.classList.add('reversed');
-                }
+                img.classList.add(Math.random() < 0.5 ? 'reversed' : 'normal');
 
                 const link = document.createElement('a');
                 link.textContent = linkLabels[index];
-                
-                if (linkLabels[index] === "about") {
-                    link.onclick = toggleAbout;
-                } else if (linkLabels[index] === "archive") {
-                    link.onclick = toggleArchive;
-                } else if (linkLabels[index] === "listen") {
+                if (linkLabels[index] === "about") link.onclick = toggleAbout;
+                else if (linkLabels[index] === "archive") link.onclick = toggleArchive;
+                else if (linkLabels[index] === "listen") {
                     link.href = "https://www.ninaprotocol.com/hubs/thephantomblue";
                     link.target = "_blank"; 
                 }
