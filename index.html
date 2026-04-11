@@ -176,11 +176,19 @@
             e.preventDefault();
             document.getElementById('about-text').style.display = "none";
             const scrollDiv = document.getElementById('archive-scroll');
+
             if (scrollDiv.style.display === "block") {
                 scrollDiv.style.display = "none";
             } else {
                 generateArchiveLines(); 
                 scrollDiv.style.display = "block";
+
+                // Scroll to the bottom of the page
+                window.scrollTo({
+                    top: document.body.scrollHeight,
+                    behavior: 'smooth'
+                });
+
                 const lines = scrollDiv.querySelectorAll('p');
                 lines.forEach((line, i) => {
                     setTimeout(() => {
