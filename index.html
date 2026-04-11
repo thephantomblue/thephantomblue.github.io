@@ -159,7 +159,17 @@
             e.preventDefault();
             document.getElementById('archive-scroll').style.display = "none";
             const textDiv = document.getElementById('about-text');
-            textDiv.style.display = (textDiv.style.display === "block") ? "none" : "block";
+            
+            if (textDiv.style.display === "block") {
+                textDiv.style.display = "none";
+            } else {
+                textDiv.style.display = "block";
+                // Scroll to the bottom of the page smoothly
+                window.scrollTo({
+                    top: document.body.scrollHeight,
+                    behavior: 'smooth'
+                });
+            }
         }
 
         function toggleArchive(e) {
