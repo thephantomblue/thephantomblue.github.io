@@ -107,13 +107,48 @@
             margin-bottom: 1vh !important;
             display: inline-block;       
         }
+
+        #shows {
+            border-bottom: 1px solid #000;
+            margin-bottom: 1rem;
+        }
+
+        #shows a {
+            font-size: 1em;
+        }
+
+        #shows h5 {
+
+        }
+
+        #past-shows {
+            opacity: 50%;
+        }
     </style>
 </head>
 <body>
 
     <h2>The Phantom Blue</h2>
 
-    <a href="mailto:thephantomblue2@gmail.com" class="contact">contact</a>
+    <div style="display: flex; align-items: center; gap: 5px;">
+        <a href="mailto:thephantomblue2@gmail.com" class="contact">contact</a>
+        <span>-</span>
+        <a id="toggleShows" class="contact">shows</a>
+    </div>
+
+    <div id="shows" style="display: none;">
+        <h5>future</h5>
+        <ul>
+            <li><a href="https://shotgun.live/fr/events/paros-x-the-phantom-blues-live" target="_blank">2026.07.16 - les disquaires, paris, fr</a></li>
+            <li><a href="https://www.instagram.com/p/DZkSx_dIqcS/" target="_blank">2026.07.01 - truskel, paris, fr</a></li>
+        </ul>
+        <h5>past</h5>
+        <ul id="past-shows">
+            <li><a href="https://www.instagram.com/p/DYAbTJrjKyb/?img_index=2" target="_blank">2026.05.06 - supersonic, paris, fr</a></li>
+            <li>2026.05.03 - clébard, montreuil, fr</li>
+            <li><a href="https://www.instagram.com/p/DXl123kExJD" target="_blank">2026.04.28 - bizart café, paris, fr</a></li>
+        </ul>
+    </div>
 
     <iframe 
         src="https://www.youtube.com/embed/AEOPFGFdKAI?si=xymvzCgjw1rp5APV" 
@@ -245,6 +280,22 @@
         }
 
         window.onload = displayRandomImages;
+
+        const toggleShows = document.getElementById('toggleShows');
+        const shows       = document.getElementById('shows');
+
+        function hideShowsList() { shows.style.display = 'none'; }
+        function displayShowsList() { shows.style.display = 'block'; }
+
+        toggleShows.addEventListener('click', function() {
+            const isVisible = shows.style.display !== 'none';
+
+            if (isVisible) {
+                hideShowsList();
+            } else {
+                displayShowsList();
+            }
+        });
     </script>
 </body>
 </html>
