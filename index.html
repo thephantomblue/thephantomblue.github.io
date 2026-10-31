@@ -130,8 +130,15 @@
             font-size: 1em;
         }
 
-        #past-shows {
+        #past-shows a:first-child {
             opacity: 50%;
+        }
+
+        .icon {
+            width: 1rem;
+            height: 1rem;
+            vertical-align: middle;
+            color: red;
         }
     </style>
 </head>
@@ -169,16 +176,41 @@
     </div>
 
     <div id="shows">
-       
+        <svg style="display: none;">
+            <symbol id="icon-video" viewBox="0 0 1024 1024">
+            <path fill="currentColor" d="M704 768V256H128v512h576zm64-416 192-96v512l-192-96v128a32 32 0 0 1-32 32H96a32 32 0 0 1-32-32V224a32 32 0 0 1 32-32h640a32 32 0 0 1 32 32v128zm0 71.552v176.896l128 64V359.552l-128 64zM192 320h192v64H192v-64z"/>
+        </svg>
         <h5>future</h5>
         <ul>
-            <li><a href="https://shotgun.live/fr/events/the-phantom-blue-faggia-owen-blue" target="_blank">2026.10.13 - l'alimentation générale, paris, fr</a></li>            
-            <li><a href="https://www.lavenelle-montreuil.org/agenda/concert-the-phantom-blue-concert-improvise-sur-un-film-muet">2026.10.09 - la parallèle, montreuil, fr</a></li>            
-            <li><a href="https://www.instagram.com/p/Ddvy0D2NmTv/" target="_blank">2026.10.07 - la pointe lafayette, paris, fr</a></li>            
+            <li><a href="https://supersonic-club.fr/evenement/cowboyy-16th-dec-supersonic-paris-tickets/" target="_blank">2026.12.16 - supersonic, paris, fr</a></li>
         </ul>
         <h5>past</h5>
         <ul id="past-shows">
-            <li><a href="https://shotgun.live/fr/events/paros-x-the-phantom-blues-live" target="_blank">2026.07.16 - les disquaires, paris, fr</a></li>            
+            <li>
+                <a href="https://shotgun.live/fr/events/the-phantom-blue-faggia-owen-blue" target="_blank">2026.10.13 - l'alimentation générale, paris, fr</a>
+                <a href="https://www.youtube.com/watch?v=5hvMnNpZcWg" target="_blank">
+                    <svg class="icon" aria-hidden="true">
+                        <use href="#icon-video"></use>
+                    </svg>
+                </a>
+            </li>            
+            <li><a href="https://www.lavenelle-montreuil.org/agenda/concert-the-phantom-blue-concert-improvise-sur-un-film-muet">2026.10.09 - la parallèle, montreuil, fr</a></li>            
+            <li>
+                <a href="https://www.instagram.com/p/Ddvy0D2NmTv/" target="_blank">2026.10.07 - la pointe lafayette, paris, fr</a>
+                <a href="https://www.youtube.com/watch?v=17jc13OVQGg" target="_blank">
+                    <svg class="icon" aria-hidden="true">
+                        <use href="#icon-video"></use>
+                    </svg>
+                </a>
+            </li>            
+            <li>
+                <a href="https://shotgun.live/fr/events/paros-x-the-phantom-blues-live" target="_blank">2026.07.16 - les disquaires, paris, fr</a>
+                <a href="https://www.youtube.com/watch?v=EdWhtWF4oOU" target="_blank">
+                    <svg class="icon" aria-hidden="true">
+                        <use href="#icon-video"></use>
+                    </svg>
+                </a>
+            </li>            
             <li><a href="https://www.instagram.com/p/DZkSx_dIqcS/" target="_blank">2026.07.01 - truskel, paris, fr</a></li>
             <li><a href="https://www.instagram.com/p/DYAbTJrjKyb/?img_index=2" target="_blank">2026.05.06 - supersonic, paris, fr</a></li>
             <li>2026.05.03 - clébard, montreuil, fr</li>
